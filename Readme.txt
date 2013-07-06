@@ -20,9 +20,6 @@ If you modify this Program, or any covered work, by linking or combining it with
 the 39dll library/extension, Hobbel's Download Manager DLL, or modified versions of these libraries,
 the licensors of this Program grant you additional permission to convey the resulting work.
 
-This is a demake of Team Fortress 2 by Valve Software. All likenesses and similarities 
-are intended as a respectful homage.
-
 This game uses the Download Manager DLL, created by Hobbel.  It was wrapped into an extension by cspotcode.
 You can find more information on the Download Manager DLL at http://www.hobbl.com/gmdlls/downloadmanager
 
