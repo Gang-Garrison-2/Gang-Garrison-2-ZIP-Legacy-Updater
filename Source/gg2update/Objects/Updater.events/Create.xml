@@ -75,22 +75,24 @@ while(DM_DownloadStatus(downloadHandle) != 3)
 DM_StopDownload(downloadHandle);
 DM_CloseDownload(downloadHandle);
 
-// rename GG2 to avoid conflict when extracting
-file_rename("Gang Garrison 2.exe", "Gang Garrison 2-old.exe");
-
-if(file_exists(tmpfile))
+// rename existing "Gang Garrison 2.exe" to avoid conflict when extracting
+if (file_exists("Gang Garrison 2.exe"))
 {
-    // let's extract the downloaded file now.
-    extractzip(tmpfile, working_directory);
+    var suffixedNewName, n;
+    suffixedNewName = "Gang Garrison 2-old";
+    n = 0;
 
-    // run new version    
-    execute_program("Gang Garrison 2.exe", "", false);
+    // increment until unused name found
+    while (file_exists(suffixedNewName + ".exe"))
+    {
+        n += 1;
+        suffixedNewName = "Gang Garrison 2-old-" + string(n);
+    }
 
-    // exit
-    game_end();
-    exit;
+    file_rename("Gang Garrison 2.exe", suffixedNewName + ".exe");
 }
-else
+
+if(!file_exists(tmpfile))
 {
     window_set_showborder(window_oldshowborder);
     window_set_fullscreen(window_oldfullscreen);
@@ -98,6 +100,15 @@ else
     game_end();
     exit;
 }
+
+// let's extract the downloaded file now.
+extractzip(tmpfile, working_directory);
+
+// run new version
+execute_program("Gang Garrison 2.exe", "", false);
+
+// exit
+game_end();
 </argument>
       </arguments>
     </action>
