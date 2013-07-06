@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<constants>
+  <constant name="UPDATE_SOURCE" value="&quot;http://www.ganggarrison.com/gg2update.zip&quot;"/>
+  <constant name="UPDATE_SOURCE_BETA" value="&quot;http://www.ganggarrison.com/gg2update_beta.zip&quot;"/>
+</constants>
