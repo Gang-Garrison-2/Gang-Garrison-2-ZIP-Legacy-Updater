@@ -104,9 +104,6 @@ if(!file_exists(tmpfile))
 // let's extract the downloaded file now.
 extractzip(tmpfile, working_directory);
 
-// run new version
-execute_program("Gang Garrison 2.exe", "", false);
-
 // exit
 game_end();
 </argument>
