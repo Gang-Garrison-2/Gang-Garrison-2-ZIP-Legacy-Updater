@@ -75,23 +75,6 @@ while(DM_DownloadStatus(downloadHandle) != 3)
 DM_StopDownload(downloadHandle);
 DM_CloseDownload(downloadHandle);
 
-// rename existing "Gang Garrison 2.exe" to avoid conflict when extracting
-if (file_exists("Gang Garrison 2.exe"))
-{
-    var suffixedNewName, n;
-    suffixedNewName = "Gang Garrison 2-old";
-    n = 0;
-
-    // increment until unused name found
-    while (file_exists(suffixedNewName + ".exe"))
-    {
-        n += 1;
-        suffixedNewName = "Gang Garrison 2-old-" + string(n);
-    }
-
-    file_rename("Gang Garrison 2.exe", suffixedNewName + ".exe");
-}
-
 if(!file_exists(tmpfile))
 {
     window_set_showborder(window_oldshowborder);
@@ -101,11 +84,25 @@ if(!file_exists(tmpfile))
     exit;
 }
 
+// rename existing "Gang Garrison 2.exe" to avoid conflict when extracting
+if (file_exists("Gang Garrison 2.exe"))
+{
+    var newName, n;
+    n = 1;
+    
+    // increment until unused name found
+    do
+    {
+        newName = "gg2-old.delete.me." + string(n);
+        n += 1;
+    }
+    until(!file_exists(newName));
+
+    file_rename("Gang Garrison 2.exe", newName);
+}
+
 // let's extract the downloaded file now.
 extractzip(tmpfile, working_directory);
-
-// run new version
-execute_program("Gang Garrison 2.exe", "", false);
 
 // exit
 game_end();
